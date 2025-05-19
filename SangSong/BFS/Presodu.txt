@@ -1,0 +1,19 @@
+BFS(start_state, goal_state):
+    create an empty queue Q
+    create an empty set visited
+
+    enqueue Q with (start_state, [start_state])  # trạng thái và đường đi đến trạng thái đó
+    add start_state to visited
+
+    while Q is not empty:
+        current_state, path = dequeue Q
+
+        if current_state == goal_state:
+            return path  # tìm thấy đường đi đến đích
+
+        for each next_state in successors(current_state):
+            if next_state not in visited and is_valid(next_state):
+                add next_state to visited
+                enqueue Q with (next_state, path + [next_state])
+
+    return failure  # không tìm thấy đường đi
